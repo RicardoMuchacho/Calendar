@@ -1,0 +1,247 @@
+body {
+  font-size: .875rem;
+}
+
+#deleteButton, #closeButton {
+  width: 75px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px gray;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+#newEventModal, #deleteEventModal, #newCalendarModal {
+  display: none;
+  z-index: 20;
+  padding: 25px;
+  background-color: #fafafa;
+  box-shadow: 0px 0px 3px black;
+  border-radius: 5px;
+  width: 350px;
+  top: 100px;
+  left: calc(50% - 175px);
+  position: absolute;
+  font-family: sans-serif;
+}
+#eventTitleInput, #calendarTitleInput {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+}
+#eventTitleInput.error, #calendarTitleInput.error {
+  border: 2px solid red;
+}
+
+#eventText {
+  font-size: 14px;
+}
+#modalBackDrop {
+  display: none;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  /* rtl:raw:
+  right: 0;
+  */
+  bottom: 0;
+  /* rtl:remove */
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #727272;
+}
+
+.sidebar .nav-link.active {
+  color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, .25);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar .navbar-toggler {
+  top: .25rem;
+  right: 1rem;
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+table{
+  font-family:sans-serif;
+		  width: 100%;
+		  border-spacing: 0;
+	  	border-collapse: separate;
+		  table-layout: fixed;
+		  margin-bottom: 50px;
+} 
+
+th{
+  background: #f0f0f0;
+	color: #383838;
+	padding: 0.5em;
+	overflow: hidden;
+}
+
+th:first-child{
+	border-radius:3px 0 0 0;
+} 
+
+th:last-child{
+	border-radius:0 3px  0 0;
+}
+
+.day{
+	display: block;
+	font-size: 1.2em;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	margin: 0 auto 5px;
+	padding: 5px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.day.active{
+	background: #ffbebe;
+	color: #383838;
+}
+					        
+.short{
+	display: none;
+  text-align: center;
+}
+
+i{
+	vertical-align: middle;
+	font-size: 2em;
+}
+				      
+tr{
+	background: #f0f0f0;
+}
+
+tr:nth-child(odd){
+	background: #ffffff;
+}
+
+tr:nth-child(4n+0){
+border-bottom:1px solid #626E7E;
+}
+
+td{
+	text-align: center;
+	vertical-align: middle;
+	border-left: 1px solid #626E7E;
+	position: relative;
+	height: 32px;
+  cursor: pointer;
+}
+
+td:last-child{
+	border-right:1px solid #626E7E;
+}
+
+td.hour{
+	font-size: 1.5em;
+	padding: 0;
+	color: #626E7E;
+	background:#fff;
+	border-bottom:1px solid #626E7E;
+	border-collapse: separate;
+	min-width: 100px;
+	cursor: default;
+}
+
+span{
+  display: block;
+  text-align: center;
+}
+
+@media(max-width:60em){
+
+.long{
+	display: none;
+}
+
+.short{
+	display: block;
+}
+}
