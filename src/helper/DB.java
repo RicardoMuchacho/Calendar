@@ -10,10 +10,11 @@ public class DB {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private String driverDB = "org.postgresql.Driver";
-	private String dbName = "Calendar";
-	private String urlDB = "jdbc:postgresql://localhost:5433/" + this.dbName; 
-	private String userDB = "postgres";
-	private String passDB = "admin";
+	private String dbName = "d5fbo36l89sfhl";
+	private String urlDB = "jdbc:postgresql://ec2-54-164-22-242.compute-1.amazonaws.com" + 
+			":5432/" + this.dbName; 
+	private String userDB = "bjdklngjjntgct";
+	private String passDB = "97845720971a806da1175c131c2a67628aa2661fd8795be2ecdd0196900df21f";
 	public String result;
 	
 	private DB(){
