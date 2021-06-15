@@ -8,18 +8,19 @@ const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const calendarTitleInput = document.getElementById('calendarTitleInput');
 const title1 = document.getElementById("t1");
+const signOut = document.getElementById("signOut");
 
 
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); 
-var yyyy = today.getFullYear();
+var yy = today.getFullYear();
 
 var todayStr = today.toString();
 
 weekday = todayStr.slice(0, 3);
 
-dateStr = weekday + ", "+mm + '/' + dd + '/' + yyyy;
+dateStr = weekday + ", "+mm + '/' + dd + '/' + yy;
 
 title1.textContent = dateStr;
 
@@ -49,6 +50,20 @@ function saveEvent() {
   if (eventTitleInput.value) {
     eventTitleInput.classList.remove('error');
 
+    fetch("events", {
+        body: new URLSearchParams({
+            'calendarid': 2,
+            'date': 2,
+            'description': 'Tarea Mat'
+        }),
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        method: "post",
+    }).then(response=>{
+        console.log(response);
+     }).catch(err => console.log(err));
+    
     document.getElementById(clicked).textContent = eventTitleInput.value;
     document.getElementById(clicked).style.backgroundColor = "lightblue";
 
@@ -86,36 +101,21 @@ function openCalendar(){
 
 function saveCalendar() {
   if (calendarTitleInput.value) {
-	console.log("hoal");
 	  
     calendarTitleInput.classList.remove('error');
 
-    let data = {
-  		  title: calendarTitleInput.value, 
-  		 }
-    
-    console.log(pageContext.request.contextPath);
-    
     fetch("calendar", {
-        body: "tite="+calendarTitleInput.value,
+        body: new URLSearchParams({
+            'title': calendarTitleInput.value
+        }),
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
         method: "post",
-    }).then(response => response.json()) 
-  		.then(json => console.log(json))
-  		.catch(err => console.log(err));
-
-  		/*fetch('calendar', {
-  		  method: "POST",
-  		  body: JSON.stringify(data),
-  		  headers: {"Content-type": "application/json; charset=UTF-8"}
-  		})
-  		.then(response => response.json()) 
-  		.then(json => console.log(json))
-  		.catch(err => console.log(err));
-    
-
+    }).then(response=>{
+        console.log(response);
+     }).catch(err => console.log(err));
+       
     var sideUl = document.getElementById("sideList");
     var li = document.createElement("li");
     li.classList.add('nav-item');
@@ -123,8 +123,7 @@ function saveCalendar() {
     a.innerHTML = calendarTitleInput.value;
     a.classList.add("nav-link");
     li.appendChild(a);  
-    sideUl.appendChild(li);*/
-    
+    sideUl.appendChild(li);
     
     closeModal();
   } else {
@@ -138,45 +137,13 @@ function openCalendarModal() {
 }
 
 /*
-var peticion = new Request('http://localhost:3000/client',{ 
-    method: 'POST',
-    body:{
-        "n1": n1,
-        "n2": n2
-    }
-  });
-  
-function solve(){
-  fetch('home',{
-      method: 'POST',
-      headers: new Headers({
-    // Encabezados
-   'Content-Type': 'text/html'
-    }),
-      body: JSON.stringify(
-    {
-    "n1": n1.value,
-    "n2": n2.value
-    })
-    
-  }).then(respuesta=>{
-     console.log(respuesta);
-     return respuesta.json();
-  }).then(r =>{
-      console.log(r);
-      result.textContent=r.result;
-  })
-}
-
-fetch('home', {
-	  method: "GET",
-	  headers: {"Content-type": "application/json;charset=UTF-8"}
-	})
-	.then(response => response.json()) 
-	.then(json => console.log(json))
-    .catch(err => console.log(err));*/
-
-//data to be sent to the POST request
+  		fetch('calendar', {
+  		  method: "GET",
+  		  headers: {"Content-type": "application/json;charset=UTF-8"}
+  		})
+  		.then(response => response.json()) 
+  		.then(json => console.log(json))
+  	    .catch(err => console.log(err));*/
 
 
 

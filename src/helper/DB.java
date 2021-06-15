@@ -53,6 +53,37 @@ public class DB {
 		return rs;
 	}
 	
+	public String getUserCalendars(int userid) {
+		String str = "";
+		try {
+		this.stmt = this.conn.createStatement();
+		this.rs = this.stmt.executeQuery("select *from calendars where user_id ="+userid);
+		while(rs.next()) {
+		str += "calendar_id= "+rs.getString("calendar_id");
+		str += "\n";
+		str += "user_id= "+rs.getString("user_id");
+		str += "\n";
+		str += "title= "+rs.getString("name");
+		str += "\n";
+		str += "description= "+rs.getString("description");
+		str += "\n";
+		str += "\n";
+		}
+		} catch (SQLException e) {
+		e.printStackTrace();
+		str = "user not found";
+		}finally {
+		try {
+		this.stmt.close();
+		this.rs.close();
+		} catch (SQLException e) {
+		e.printStackTrace();
+		}
+		}
+		str += "\n";
+		str += "GET method to endpoint works";
+		return str;
+	}
 	public void dbPrepareStatement(String query, Object[] obj) {
 		try {
 		this.pstmt = this.conn.prepareStatement(query);

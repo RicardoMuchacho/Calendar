@@ -53,6 +53,8 @@ public class Register extends HttpServlet {
 		String pass = request.getParameter("pass");
 		String email = request.getParameter("email");
 		
+		//String hashPass = Hashing.getHash(pass);
+				
 		System.out.println(name);
 		System.out.println(pass);
 		System.out.println(email);
