@@ -201,6 +201,41 @@ public User loginData(String name, String password) {
 	return loggedUser;
 }
 
+public void deleteUser(int userid) {
+	try {
+	this.pstmt = this.conn.prepareStatement("delete from users where user_id=" +userid);
+	this.pstmt.executeUpdate();
+	System.out.println("deleted");
+	} catch (SQLException e) {
+	e.printStackTrace();
+	System.out.println("user not found");
+	}finally {
+
+	try {
+	this.pstmt.close();
+	} catch (SQLException e) {
+	e.printStackTrace();
+	}
+	}
+}
+
+public void deleteEvent(int eventid) {
+	try {
+	this.pstmt = this.conn.prepareStatement("delete from events where event_id=" +eventid);
+	this.pstmt.executeUpdate();
+	System.out.println("deleted");
+	} catch (SQLException e) {
+	e.printStackTrace();
+	System.out.println("event not found");
+	}finally {
+
+	try {
+	this.pstmt.close();
+	} catch (SQLException e) {
+	e.printStackTrace();
+	}
+	}
+}
 
  public User loggedData(String name) {
 	User loggedUser = new User();

@@ -11,7 +11,8 @@ public class test {
 		User user = new User("rickity", "h", "h@gmail.com");
 		user.setUserid(2);
 		
-		db.registerUser(user);
+		//db.deleteUser(16);
+		//db.registerUser(user);
 		
 		//User user2 = db.loginData(user.getName(), user.getPassword());
 		//System.out.println(user2.getName());

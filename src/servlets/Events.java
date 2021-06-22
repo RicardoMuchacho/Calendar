@@ -56,5 +56,9 @@ public class Events extends HttpServlet {
 
 	     //System.out.println(title + " userid: "+userid);
 	}
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	   db.deleteEvent(2);
+	}
 
 }

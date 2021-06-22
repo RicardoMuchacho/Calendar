@@ -19,7 +19,7 @@
       <label for="name">Name</label>
     </div>
     <div class="col-75">
-      <input type="text" id="name" name="name" placeholder="${name}" disabled>
+      <input type="text" id="name" name="name" value=" " disabled>
     </div>
   </div>
   <div class="row">
@@ -27,7 +27,7 @@
       <label for="lname">Email</label>
     </div>
     <div class="col-75">
-      <input type="text" id="email" name="email" placeholder="${email}" disabled>
+      <input type="text" id="email" name="email" value=" " disabled>
     </div>
   </div>
   <div class="row">
@@ -35,7 +35,7 @@
       <label for="password">Password</label>
     </div>
     <div class="col-75">
-      <input type="password" id="pass" name="pass" placeholder="${password}" disabled>
+      <input type="password" id="pass" name="pass" value=" " disabled>
     </div>
   </div>
 <div class="row">
@@ -43,12 +43,13 @@
       <label for="userid">User id</label>
     </div>
     <div class="col-75">
-      <input type="number" id="userid" name="userid" placeholder="${userid}" disabled>
+      <input type="number" id="userid" name="userid" value=" " readonly>
     </div>
   </div>
      <button id="confirmBtn" onclick="confirm()" disabled> Confirm</button>
   </form>
    <button id="editBtn" onclick="edit()"> Edit</button>
+   <button id="deleteBtn" onclick="deleteUser()"> Delete User</button>
    <button id="cancelBtn" onclick="cancel()" disabled> Cancel </button>
   </div>
 

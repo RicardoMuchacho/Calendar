@@ -34,7 +34,7 @@ public class Users extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		   RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/users.jsp");
+		   RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/users.html");
 		   dispatcher.forward(request,  response);
 		   
 		   HttpSession session = request.getSession();
@@ -81,7 +81,7 @@ public class Users extends HttpServlet {
 	
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		super.doDelete(req, resp);
+	   
 	}
 }
 

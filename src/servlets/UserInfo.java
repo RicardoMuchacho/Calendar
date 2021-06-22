@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,18 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import helper.DB;
+import helper.User;
 
 /**
- * Servlet implementation class SignOut
+ * Servlet implementation class UserInfo
  */
-@WebServlet("/signout")
-public class SignOut extends HttpServlet {
+@WebServlet("/userinfo")
+public class UserInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      DB db = DB.getInstances();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignOut() {
+    public UserInfo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,11 +34,22 @@ public class SignOut extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 HttpSession session = request.getSession();
-		 session.invalidate();
-		 
-		 response.sendRedirect("index.html");
-	   
+		   
+		   HttpSession session = request.getSession();
+		   String name = session.getAttribute("name").toString();
+		   
+		   User logged = db.loggedData(name);
+		   
+		   String email =  logged.getEmail();  
+		   int userid = logged.getUserid();  
+		   String pass = logged.getPassword(); 
+		   
+		   String json = "{\"status\": 200, \"name\":\""+name+"\", \"email\":\""+email+"\", \"userid\":\""+userid+"\", \"pass\":\""+pass+"\"}";
+		   PrintWriter out = response.getWriter();
+		   response.setContentType("application/json");
+		   response.setCharacterEncoding("UTF-8");
+		   out.print(json);
+		   out.flush();
 	}
 
 	/**
@@ -44,12 +57,7 @@ public class SignOut extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 HttpSession session = request.getSession();
-		 int userid = Integer.parseInt(session.getAttribute("userid").toString());
-         db.deleteUser(userid);
-		
-		 session.invalidate();
-		 
+		doGet(request, response);
 	}
 
 }

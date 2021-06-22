@@ -3,7 +3,6 @@ let clicked = null;
 
 const newEventModal = document.getElementById('newEventModal');
 const newCalendarModal = document.getElementById('newCalendarModal');
-const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const calendarTitleInput = document.getElementById('calendarTitleInput');
@@ -31,6 +30,7 @@ title1.textContent = dateStr;
 function openModal(elementId) {
   clicked = elementId;
 
+  eventTitleInput.value = document.getElementById(clicked).textContent
   newEventModal.style.display = 'block';
   backDrop.style.display = 'block';
 }
@@ -39,7 +39,6 @@ function closeModal() {
   eventTitleInput.classList.remove('error');
   newEventModal.style.display = 'none';
   newCalendarModal.style.display = 'none';
-  deleteEventModal.style.display = 'none';
   backDrop.style.display = 'none';
   eventTitleInput.value = '';
   calendarTitleInput.value = '';
@@ -54,7 +53,7 @@ function saveEvent() {
         body: new URLSearchParams({
             'calendarid': 2,
             'date': 2,
-            'description': 'Tarea Mat'
+            'description': eventTitleInput.value
         }),
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -74,14 +73,37 @@ function saveEvent() {
 }
 
 function deleteEvent() {
+	  if (eventTitleInput.value) {
+	    eventTitleInput.classList.remove('error');
 
-  closeModal();
-}
+	    fetch("events", {
+	        body: new URLSearchParams({
+	            'calendarid': 2,
+	            'date': 2,
+	            'description': eventTitleInput.value
+	        }),
+	        headers: {
+	            "Content-Type": "application/x-www-form-urlencoded",
+	        },
+	        method: "delete",
+	    }).then(response=>{
+	        console.log(response);
+	     }).catch(err => console.log(err));
+	    
+	    document.getElementById(clicked).textContent = " ";
+	    document.getElementById(clicked).style.backgroundColor = "white";
 
-document.getElementById("saveButton").addEventListener('click', saveEvent)
-document.getElementById("cancelButton").addEventListener('click', closeModal)
-document.getElementById("saveButtonCalendar").addEventListener('click', saveCalendar)
-document.getElementById("cancelButtonCalendar").addEventListener('click', closeModal)
+	    closeModal();
+	  } else {
+	    eventTitleInput.classList.add('error');
+	  }
+	}
+
+document.getElementById("saveButton").addEventListener('click', saveEvent);
+document.getElementById("cancelButton").addEventListener('click', closeModal);
+document.getElementById("deleteEventButton").addEventListener('click', deleteEvent);
+document.getElementById("saveButtonCalendar").addEventListener('click', saveCalendar);
+document.getElementById("cancelButtonCalendar").addEventListener('click', closeModal);
 
 counter=0;
 document.querySelectorAll('#myTable td').forEach(e=>{

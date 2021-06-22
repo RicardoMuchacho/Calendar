@@ -2,7 +2,7 @@ body {
   font-size: .875rem;
 }
 
-#deleteButton, #closeButton {
+#closeButton {
   width: 75px;
   cursor: pointer;
   box-shadow: 0px 0px 2px gray;
